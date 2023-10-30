@@ -2,7 +2,9 @@ import { NextResponse } from "next/server";
 import { headers } from "next/headers";
 
 export async function POST(request: Request) {
+
   const { imageUrl, theme, room } = await request.json();
+
 
   let startResponse = await fetch("https://api.replicate.com/v1/predictions", {
     method: "POST",
@@ -33,6 +35,7 @@ export async function POST(request: Request) {
   let restoredImage: string | null = null;
   while (!restoredImage) {
     // Loop in 1s intervals until the alt text is ready
+    console.log("Please wait...");
     let finalResponse = await fetch(endpointUrl, {
       method: "GET",
       headers: {
