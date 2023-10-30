@@ -49,7 +49,7 @@ export default async function Todo() {
           <div className="sm:grid grid-cols-2 space-y-4">
             {items.map((item) => {
               return (
-                <div>
+                <div key={item.id}>
                   <Card sx={{ maxWidth: 345 }}>
                     <CardMedia
                       component="img"

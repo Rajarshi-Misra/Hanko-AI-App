@@ -58,7 +58,7 @@ const currencies = [
 export const Form = () => {
   const supabase = createClient(
     "https://dgahpknmwckcozpfuyrp.supabase.co",
-    process.env.NEXT_PUBLIC_SUPABASE_ANON
+    process.env.NEXT_PUBLIC_SUPABASE_ANON!
   );
   const router = useRouter();
   // const create = async (e: React.SyntheticEvent) => {
@@ -91,7 +91,7 @@ export const Form = () => {
       .upload("/" + file.name, file, { upsert: true });
     const publicUrl = supabase.storage
       .from("Images")
-      .getPublicUrl("/" + data.path);
+      .getPublicUrl("/" + data!.path);
     if (data) {
       console.log(publicUrl.data.publicUrl);
     } else {
@@ -135,7 +135,7 @@ export const Form = () => {
   };
   //   const config = new Configuration({ apiKey: process.env.OPENAI_API_KEY });
   //   const openai = new OpenAIApi(config);
-  const [file, setFile] = React.useState<File>(null);
+  const [file, setFile] = React.useState<File>();
   const [name, setName] = React.useState("Nothing");
   const [uploadUrl, setUploadUrl] = React.useState("");
   const [valuee, setValuee] = React.useState("Living Room");
@@ -157,8 +157,8 @@ export const Form = () => {
               type="file"
               accept=".png"
               onChange={(e) => {
-                setName(e.target.files[0].name);
-                setFile(e.target.files[0]);
+                setName(e.target.files![0].name);
+                setFile(e.target.files![0]);
               }}
             />
           </Button>

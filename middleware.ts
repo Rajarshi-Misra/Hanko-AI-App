@@ -1,7 +1,7 @@
 import * as jose from "jose";
 import { NextRequest, NextResponse } from "next/server";
 
-const hankoApi = "https://8d67d81e-87b4-44d9-a529-5313c7d48f11.hanko.io";
+const hankoApi = process.env.NEXT_PUBLIC_HANKO_API_KEY;
 
 export default async function middleware(req: NextRequest) {
   const token = req.cookies.get("hanko")?.value;
@@ -11,7 +11,7 @@ export default async function middleware(req: NextRequest) {
   );
 
   try {
-    const verifiedJWT = await jose.jwtVerify(token, JWKS);
+    const verifiedJWT = await jose.jwtVerify(token!, JWKS);
     console.log(verifiedJWT);
   } catch {
     return NextResponse.redirect(new URL("/", req.url));
