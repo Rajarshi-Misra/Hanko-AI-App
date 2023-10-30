@@ -1,14 +1,9 @@
 import { NextResponse } from "next/server";
 import { headers } from "next/headers";
 
-// Create a new ratelimiter, that allows 5 requests per 24 hours
-
 export async function POST(request: Request) {
-  // Rate Limiter Code
-
   const { imageUrl, theme, room } = await request.json();
 
-  // POST request to Replicate to start the image restoration generation process
   let startResponse = await fetch("https://api.replicate.com/v1/predictions", {
     method: "POST",
     headers: {
@@ -38,7 +33,6 @@ export async function POST(request: Request) {
   let restoredImage: string | null = null;
   while (!restoredImage) {
     // Loop in 1s intervals until the alt text is ready
-    console.log("Please wait...");
     let finalResponse = await fetch(endpointUrl, {
       method: "GET",
       headers: {

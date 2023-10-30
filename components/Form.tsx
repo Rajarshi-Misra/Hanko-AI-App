@@ -6,12 +6,7 @@ import * as React from "react";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import { useRouter } from "next/navigation";
-
-// import Replicate from "replicate";
 import { createClient } from "@supabase/supabase-js";
-
-// Create a single supabase client for interacting with your database
-
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
   clipPath: "inset(50%)",
@@ -54,29 +49,12 @@ const currencies = [
     label: "Balcony",
   },
 ];
-// const key = process.env.SUPABASE_ANON;
 export const Form = () => {
   const supabase = createClient(
     "https://dgahpknmwckcozpfuyrp.supabase.co",
     process.env.NEXT_PUBLIC_SUPABASE_ANON!
   );
   const router = useRouter();
-  // const create = async (e: React.SyntheticEvent) => {
-  //   e.preventDefault();
-  //   await fetch(`/api/todo`, {
-  //     method: "POST",
-  //     credentials: "include",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       title: newItem,
-  //     }),
-  //   });
-
-  //   router.refresh();
-  //   setNewItem("");
-  // };
   const [loading, setLoading] = React.useState(false);
   const handleSubmit = async (
     file: File,
@@ -84,7 +62,6 @@ export const Form = () => {
     value: string,
     valuee: string
   ) => {
-    // e.preventDefault();
     setLoading(true);
     const { data, error } = await supabase.storage
       .from("Images")
@@ -92,11 +69,7 @@ export const Form = () => {
     const publicUrl = supabase.storage
       .from("Images")
       .getPublicUrl("/" + data!.path);
-    if (data) {
-      console.log(publicUrl.data.publicUrl);
-    } else {
-      console.log(error);
-    }
+
     const res = await fetch("/api/generate", {
       method: "POST",
       headers: {
@@ -110,16 +83,8 @@ export const Form = () => {
     });
 
     let newPhoto = await res.json();
-    if (res.status !== 200) {
-      // setError(newPhoto);
-      console.log(res);
-    } else {
-      // setRestoredImage(newPhoto[1]);
-      console.log(newPhoto[1]);
-    }
-    setTimeout(() => {
-      // setLoading(false);
-    }, 1300);
+
+    setTimeout(() => {}, 1300);
     await fetch(`/api/todo`, {
       method: "POST",
       credentials: "include",
@@ -133,8 +98,6 @@ export const Form = () => {
     router.refresh();
     setLoading(false);
   };
-  //   const config = new Configuration({ apiKey: process.env.OPENAI_API_KEY });
-  //   const openai = new OpenAIApi(config);
   const [file, setFile] = React.useState<File>();
   const [name, setName] = React.useState("Nothing");
   const [uploadUrl, setUploadUrl] = React.useState("");
