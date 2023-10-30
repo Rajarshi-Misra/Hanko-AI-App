@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { register } from "@teamhanko/hanko-elements";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
-const hankoApi = "https://8d67d81e-87b4-44d9-a529-5313c7d48f11.hanko.io";
+const hankoApi = process.env.NEXT_PUBLIC_HANKO_API_KEY;
 
 export const Profile = () => {
   const [openState, setOpenState] = useState(false);
