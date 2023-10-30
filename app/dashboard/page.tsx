@@ -47,28 +47,31 @@ export default async function Todo() {
         <div className="col-span-2 space-y-4">
           <div className="text-3xl p-4 font-bold">YOUR DESIGNS</div>
           <div className="sm:grid grid-cols-2 space-y-4">
-            {items.map((item) => {
-              return (
-                <div key={item.id}>
-                  <Card sx={{ maxWidth: 345 }}>
-                    <CardMedia
-                      component="img"
-                      alt={item.src}
-                      image={item.src}
-                    />
-                    <CardActions>
-                      <a
-                        href={item.src}
-                        target="_blank"
-                        className="text-green-600 font-semibold"
-                      >
-                        DOWNLOAD
-                      </a>
-                    </CardActions>
-                  </Card>
-                </div>
-              );
-            })}
+            {items
+              .slice(0)
+              .reverse()
+              .map((item) => {
+                return (
+                  <div key={item.id}>
+                    <Card sx={{ maxWidth: 345 }}>
+                      <CardMedia
+                        component="img"
+                        alt={item.src}
+                        image={item.src}
+                      />
+                      <CardActions>
+                        <a
+                          href={item.src}
+                          target="_blank"
+                          className="text-green-600 font-semibold"
+                        >
+                          DOWNLOAD
+                        </a>
+                      </CardActions>
+                    </Card>
+                  </div>
+                );
+              })}
           </div>
         </div>
       </div>
