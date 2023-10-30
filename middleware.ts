@@ -1,23 +1,22 @@
-import { NextResponse, NextRequest } from "next/server";
+import * as jose from "jose";
+import { NextRequest, NextResponse } from "next/server";
 
-import { jwtVerify, createRemoteJWKSet } from "jose";
+const hankoApi = "https://8d67d81e-87b4-44d9-a529-5313c7d48f11.hanko.io";
 
-const hankoApiUrl = process.env.NEXT_PUBLIC_HANKO_API_URL;
+export default async function middleware(req: NextRequest) {
+  const token = req.cookies.get("hanko")?.value;
 
-export async function middleware(req: NextRequest) {
-  const hanko = req.cookies.get("hanko")?.value;
-
-  const JWKS = createRemoteJWKSet(
-    new URL(`${hankoApiUrl}/.well-known/jwks.json`)
+  const JWKS = jose.createRemoteJWKSet(
+    new URL(`${hankoApi}/.well-known/jwks.json`)
   );
 
   try {
-    const verifiedJWT = await jwtVerify(hanko ?? "", JWKS);
+    const verifiedJWT = await jose.jwtVerify(token, JWKS);
+    console.log(verifiedJWT);
   } catch {
-    return NextResponse.redirect(new URL("/login", req.url));
+    return NextResponse.redirect(new URL("/", req.url));
   }
 }
-
 export const config = {
-  matcher: ["/dashboard"],
+  matcher: ["/todo"],
 };

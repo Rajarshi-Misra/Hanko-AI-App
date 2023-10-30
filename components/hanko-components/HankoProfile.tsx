@@ -2,9 +2,9 @@
 
 import { useEffect } from "react";
 import { register } from "@teamhanko/hanko-elements";
-import { LogoutBtn } from "@/components/LogoutButton";
+import { Logout } from "@/components/Logout";
 
-const hankoApi = process.env.NEXT_PUBLIC_HANKO_API_URL || '';
+const hankoApi = process.env.NEXT_PUBLIC_HANKO_API_KEY || "";
 
 export default function HankoProfile() {
   useEffect(() => {
@@ -16,7 +16,7 @@ export default function HankoProfile() {
   return (
     <>
       <hanko-profile />
-      <LogoutBtn />
+      <Logout />
     </>
   );
 }
