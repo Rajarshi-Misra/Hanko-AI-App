@@ -9,7 +9,7 @@ The web app has been hosted on Vercel
 ## Clone the repo
 
 ```bash
-git clone https://github.com/teamhanko/hanko-nextjs-starter.git
+https://github.com/Rajarshi-Misra/Hanko-AI-App.git
 ```
 ## Setting Up The Environment Variables
 
