@@ -191,9 +191,9 @@ export const Form = () => {
           {!loading ? (
             <div className="font-bold text-xl">RENDER DESIGNS</div>
           ) : (
-            <div className="font-bold text-xl flex">
+            <div className="font-bold text-xl flex justify-items-center">
               PLEASE WAIT
-              <CircularProgress />
+              <CircularProgress color="secondary" />
             </div>
           )}
         </Button>
