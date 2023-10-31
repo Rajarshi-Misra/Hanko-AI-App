@@ -178,7 +178,7 @@ export const Form = () => {
         <Button
           variant="contained"
           onClick={(e) => {
-            if (file != null || file!.type.match("image.*")) {
+            if (file != null && file!.type.match("image.*")) {
               {
                 handleSubmit(file!, name, value, valuee);
               }
