@@ -61,14 +61,6 @@ export default async function Todo() {
           </div>
         </div>
       </div>
-      <div className="w-full text-white">
-        IF YOU'VE REACHED THIS FAR, PLEASE DROP A LIKE ON{" "}
-        <a href="https://dev.to/rajarshimisra/building-an-ai-webapphomedec-with-hanko-nextjs-prisma-supabase-and-replicate-29cd">
-          THIS
-        </a>
-        , AND A STAR ON{" "}
-        <a href="https://github.com/Rajarshi-Misra/Hanko-AI-App">THIS</a>
-      </div>
     </main>
   );
 }
