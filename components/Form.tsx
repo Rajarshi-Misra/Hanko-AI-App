@@ -173,7 +173,7 @@ export const Form = () => {
         <Button
           variant="contained"
           onClick={(e) => {
-            if (file != null || !file!.type.match("image.*")) {
+            if (file == null || !file!.type.match("image.*")) {
               {
                 window.alert("You need to upload an image");
               }
