@@ -69,6 +69,11 @@ export const Form = () => {
     const publicUrl = supabase.storage
       .from("Images")
       .getPublicUrl("/" + data!.path);
+    if (data) {
+      console.log(publicUrl.data.publicUrl);
+    } else {
+      console.log(error);
+    }
     const res = await fetch("/api/generate", {
       method: "POST",
       headers: {
@@ -82,6 +87,11 @@ export const Form = () => {
     });
 
     let newPhoto = await res.json();
+    if (res.status !== 200) {
+      console.log(res);
+    } else {
+      console.log(newPhoto[1]);
+    }
     setTimeout(() => {}, 1300);
     await fetch(`/api/todo`, {
       method: "POST",
@@ -98,7 +108,6 @@ export const Form = () => {
   };
   const [file, setFile] = React.useState<File>();
   const [name, setName] = React.useState("Nothing");
-  const [uploadUrl, setUploadUrl] = React.useState("");
   const [valuee, setValuee] = React.useState("Living Room");
   const [value, setValue] = React.useState("");
   return (
