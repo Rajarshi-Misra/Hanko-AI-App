@@ -88,7 +88,7 @@ export const Form = () => {
 
     let newPhoto = await res.json();
     if (res.status !== 200) {
-      console.log(res);
+      window.alert("Sorry, we are out of resources, please try again later.");
     } else {
       console.log(newPhoto[1]);
     }
