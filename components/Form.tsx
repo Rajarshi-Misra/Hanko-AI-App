@@ -70,6 +70,7 @@ export const Form = () => {
       .from("Images")
       .getPublicUrl("/" + data!.path);
     if (data) {
+      console.log(publicUrl.data.publicUrl);
     } else {
       console.log(error);
     }

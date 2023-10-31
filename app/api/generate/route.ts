@@ -27,7 +27,6 @@ export async function POST(request: Request) {
   let jsonStartResponse = await startResponse.json();
 
   let endpointUrl = jsonStartResponse.urls.get;
-
   let restoredImage: string | null = null;
   while (!restoredImage) {
     console.log("Please wait...");
@@ -45,7 +44,7 @@ export async function POST(request: Request) {
     } else if (jsonFinalResponse.status === "failed") {
       break;
     } else {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
     }
   }
 
