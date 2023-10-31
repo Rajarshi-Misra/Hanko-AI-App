@@ -183,12 +183,12 @@ export const Form = () => {
         <Button
           variant="contained"
           onClick={(e) => {
-            if (file != null) {
+            if (file != null && file.type.match("image.*")) {
               {
-                handleSubmit(file, name, value, valuee);
+                window.alert("You need to upload an image");
               }
             } else {
-              window.alert("You need to upload an image");
+              handleSubmit(file!, name, value, valuee);
             }
           }}
         >
