@@ -7,7 +7,6 @@ import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import { useRouter } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
-import CircularProgress from "@mui/material/CircularProgress";
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
   clipPath: "inset(50%)",
@@ -191,9 +190,7 @@ export const Form = () => {
           {!loading ? (
             <div className="font-bold text-xl">RENDER DESIGNS</div>
           ) : (
-            <div className="font-bold text-xl">
-              PLEASE WAIT <CircularProgress />
-            </div>
+            <div className="font-bold text-xl">PLEASE WAIT</div>
           )}
         </Button>
       </div>
