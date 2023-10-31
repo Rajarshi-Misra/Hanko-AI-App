@@ -7,6 +7,7 @@ import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import { useRouter } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
+import CircularProgress from "@mui/material/CircularProgress";
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
   clipPath: "inset(50%)",
@@ -69,11 +70,6 @@ export const Form = () => {
     const publicUrl = supabase.storage
       .from("Images")
       .getPublicUrl("/" + data!.path);
-    if (data) {
-      console.log(publicUrl.data.publicUrl);
-    } else {
-      console.log(error);
-    }
     const res = await fetch("/api/generate", {
       method: "POST",
       headers: {
@@ -88,7 +84,9 @@ export const Form = () => {
 
     if (res.status !== 200) {
       setLoading(false);
-      window.alert("Sorry, we are busy currently....");
+      window.alert(
+        "Sorry, our resources are busy currently. If the issue persists, please contact the owner"
+      );
     }
     let newPhoto = await res.json();
     setTimeout(() => {}, 1300);
@@ -193,7 +191,9 @@ export const Form = () => {
           {!loading ? (
             <div className="font-bold text-xl">RENDER DESIGNS</div>
           ) : (
-            <div className="font-bold text-xl">PLEASE WAIT..</div>
+            <div className="font-bold text-xl">
+              PLEASE WAIT <CircularProgress />
+            </div>
           )}
         </Button>
       </div>
