@@ -87,6 +87,7 @@ export const Form = () => {
     });
 
     if (res.status !== 200) {
+      setLoading(false);
       window.alert("Sorry, we are busy currently....");
     }
     let newPhoto = await res.json();
