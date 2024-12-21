@@ -1,15 +1,26 @@
 "use client";
 import Button from "@mui/material/Button";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { useEffect, useMemo, useState } from "react";
+import {
+  type Container,
+  type ISourceOptions,
+  MoveDirection,
+  OutMode,
+} from "@tsparticles/engine";
+
+import {loadSlim} from "@tsparticles/slim";
+
 export default function Login() {
   return (
-    <div className="flex flex-col min-h-screen justify-center items-center bg-black">
-      <div>
+    <div className="flex flex-col sm:px-4 min-h-screen justify-center items-center bg-black">
+      <header>
         <div className="sm:text-9xl text-6xl text-white">HOMEDEC</div>
         <div className="sm:text-5xl text-white">
-          AI HOME DECORATOR FOR ALL YOUR NEEDS
+        Transform Your Home with AI-Powered Design
         </div>
-      </div>
+      </header>
       <Button
         variant="contained"
         href="/login  "
